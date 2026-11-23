@@ -21,11 +21,16 @@ The demo agents are deterministic stand-ins. They prove the orchestration interf
                 |        |        |
            Local model / open model / optional hosted model
 
+       Knowledge domains (introduced incrementally):
+       - private local memory, controlled by each node owner
+       - shared community commons, populated only by explicit opt-in
+       - verified knowledge views with provenance, status, and revision history
+
        Shared services (introduced incrementally):
-       - provenance-aware knowledge and retrieval
+       - provenance-aware retrieval and export/import
        - evaluation and verification
        - permissions, identity, and audit events
-       - federated node discovery and transport
+       - authenticated federated synchronization and node transport
 ```
 
 ## Core boundaries
