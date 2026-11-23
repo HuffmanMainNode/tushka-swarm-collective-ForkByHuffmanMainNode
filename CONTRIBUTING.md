@@ -23,6 +23,8 @@ Small contributions count. Explain what you observed and how someone else can re
 - Add local-model setup instructions and reproducible evaluation cases.
 - Improve provenance, export, privacy, or security documentation.
 
+For substantial proposals and external project discoveries, use the [contribution intake and review process](docs/CONTRIBUTION-REVIEW-PROCESS.md). You can open a structured [contribution proposal](https://github.com/TushkaLoLz31337/tushka-swarm-collective/issues/new?template=contribution_proposal.yml) to give reviewers the source, evidence, permissions, risks, and suggested next step.
+
 ## Contribution workflow
 
 1. Search existing issues and discussions before opening a duplicate.
