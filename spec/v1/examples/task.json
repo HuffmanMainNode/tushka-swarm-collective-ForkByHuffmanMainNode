@@ -1,0 +1,6 @@
+{
+  "protocol_version": "1.0",
+  "message_type": "task",
+  "task_id": "example-task-001",
+  "prompt": "Compare two public documentation pages and list verifiable differences."
+}

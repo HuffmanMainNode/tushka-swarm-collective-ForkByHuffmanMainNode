@@ -1,0 +1,2 @@
+# Test-only dependencies; not installed by Tushka at runtime.
+jsonschema==4.25.1

@@ -1,0 +1,8 @@
+{
+  "protocol_version": "1.0",
+  "message_type": "result",
+  "task_id": "example-task-001",
+  "agent_id": "local/researcher-01",
+  "status": "succeeded",
+  "content": "The pages differ in the listed sections. Each difference should be checked against the cited source snapshots."
+}
