@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tushka:protocol:v1:result",
+  "title": "Tushka Protocol v1 Agent Result",
+  "description": "A portable, attributable result envelope. Attribution identifies the claimed agent; it is not cryptographic proof of identity or correctness.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "protocol_version": { "const": "1.0" },
+    "message_type": { "const": "result" },
+    "task_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "agent_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "description": "Stable logical identifier asserted by the responding agent."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["succeeded", "failed", "cancelled"]
+    },
+    "content": {
+      "type": "string",
+      "description": "Untrusted agent output. A successful result may still be incorrect or unsafe."
+    },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        },
+        "retryable": { "type": "boolean" }
+      },
+      "required": ["code", "message"]
+    }
+  },
+  "required": ["protocol_version", "message_type", "task_id", "agent_id", "status"],
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "succeeded" } }, "required": ["status"] },
+      "then": { "required": ["content"], "not": { "required": ["error"] } },
+      "else": { "required": ["error"] }
+    }
+  ]
+}
