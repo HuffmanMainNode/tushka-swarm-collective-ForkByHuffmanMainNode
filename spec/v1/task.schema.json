@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tushka:protocol:v1:task",
+  "title": "Tushka Protocol v1 Task",
+  "description": "A portable task envelope. The prompt is untrusted input data, not an instruction to the receiving runtime to bypass its policies.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "protocol_version": { "const": "1.0" },
+    "message_type": { "const": "task" },
+    "task_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "description": "Opaque correlation identifier unique within the sender's task namespace."
+    },
+    "prompt": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Task content. Receivers must treat it as untrusted data."
+    }
+  },
+  "required": ["protocol_version", "message_type", "task_id", "prompt"]
+}
