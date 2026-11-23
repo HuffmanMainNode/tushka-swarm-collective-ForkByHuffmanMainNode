@@ -1,22 +1,28 @@
 import asyncio
 import json
 import threading
+import time
 import unittest
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 from tushka.core import Task
-from tushka.local_model import LocalModelAgent
+from tushka.local_model import LocalModelAgent, MAX_PROMPT_BYTES, MAX_RESPONSE_BYTES
 
 
 class LocalModelHandler(BaseHTTPRequestHandler):
     response_payload = {"message": {"content": "local answer"}}
     raw_response = None
     request_payload = None
+    request_path = None
     status_code = 200
+    delay_seconds = 0
 
     def do_POST(self):
+        type(self).request_path = self.path
         length = int(self.headers.get("Content-Length", "0"))
         type(self).request_payload = json.loads(self.rfile.read(length))
+        if type(self).delay_seconds:
+            time.sleep(type(self).delay_seconds)
         body = type(self).raw_response
         if body is None:
             body = json.dumps(type(self).response_payload).encode("utf-8")
@@ -24,7 +30,10 @@ class LocalModelHandler(BaseHTTPRequestHandler):
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
-        self.wfile.write(body)
+        try:
+            self.wfile.write(body)
+        except (BrokenPipeError, ConnectionResetError):
+            pass
 
     def log_message(self, format, *args):
         return
@@ -48,7 +57,9 @@ class LocalModelAgentTests(unittest.TestCase):
         LocalModelHandler.response_payload = {"message": {"content": "local answer"}}
         LocalModelHandler.raw_response = None
         LocalModelHandler.request_payload = None
+        LocalModelHandler.request_path = None
         LocalModelHandler.status_code = 200
+        LocalModelHandler.delay_seconds = 0
 
     def test_sends_prompt_and_returns_attributed_result(self):
         agent = LocalModelAgent("local-one", "test-model", self.base_url)
@@ -61,6 +72,35 @@ class LocalModelAgentTests(unittest.TestCase):
             [{"role": "user", "content": "Explain the test."}],
         )
         self.assertFalse(LocalModelHandler.request_payload["stream"])
+        self.assertEqual(LocalModelHandler.request_path, "/api/chat")
+
+    def test_base_url_path_prefix_is_preserved(self):
+        agent = LocalModelAgent(
+            "local-one", "test-model", f"{self.base_url}/ollama/v1/"
+        )
+        asyncio.run(agent.run(Task("task-prefix", "hello")))
+        self.assertEqual(LocalModelHandler.request_path, "/ollama/v1/api/chat")
+
+    def test_rejects_prompt_over_1_mib_before_request(self):
+        agent = LocalModelAgent("local-one", "test-model", self.base_url)
+        prompt = "x" * (MAX_PROMPT_BYTES + 1)
+        with self.assertRaisesRegex(RuntimeError, "1 MiB limit"):
+            asyncio.run(agent.run(Task("task-large-prompt", prompt)))
+        self.assertIsNone(LocalModelHandler.request_path)
+
+    def test_rejects_response_over_4_mib(self):
+        LocalModelHandler.raw_response = b"x" * (MAX_RESPONSE_BYTES + 1)
+        agent = LocalModelAgent("local-one", "test-model", self.base_url)
+        with self.assertRaisesRegex(RuntimeError, "4 MiB limit"):
+            asyncio.run(agent.run(Task("task-large-response", "hello")))
+
+    def test_request_timeout_is_reported(self):
+        LocalModelHandler.delay_seconds = 0.2
+        agent = LocalModelAgent(
+            "local-one", "test-model", self.base_url, request_timeout_seconds=0.05
+        )
+        with self.assertRaisesRegex(RuntimeError, "timed out"):
+            asyncio.run(agent.run(Task("task-timeout", "hello")))
 
     def test_rejects_missing_message_content(self):
         LocalModelHandler.response_payload = {"message": {"content": ""}}
