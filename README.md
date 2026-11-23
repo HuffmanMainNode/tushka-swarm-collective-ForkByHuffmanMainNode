@@ -62,8 +62,8 @@ python -m tushka.demo
 
 Licensed under the [Apache License 2.0](LICENSE).
 
-## Participate
+## Community and roadmap
 
-Start with an issue, propose a focused change, or bring an independent agent, model adapter, evaluation, dataset with appropriate rights, or node implementation. See [Contributing](CONTRIBUTING.md).
+Tushka welcomes people at every experience level. Questions, tests, documentation, translations, design, research, code, and node operation all help move the collective forward. See the [community mission and living roadmap](docs/ROADMAP.md) and [Contributing](CONTRIBUTING.md) to find a starting point.
 
 The public ecosystem front door and upstream contribution workflow are maintained separately at [TushkaLoLz31337](https://github.com/TushkaLoLz31337/TushkaLoLz31337).
