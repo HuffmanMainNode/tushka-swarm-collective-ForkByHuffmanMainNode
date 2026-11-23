@@ -18,31 +18,30 @@ Tushka is an effort to build practical, inspectable, and extensible swarm intell
 The initial prototype is intentionally small:
 
 1. A coordinator accepts a task.
-2. It dispatches the task to two independent agents.
-3. It collects both results.
-4. It verifies that usable results were returned.
-5. It produces a combined, traceable response.
+2. It dispatches the task to independent agents.
+3. It collects attributable results.
+4. It reports usable results and explicit failures.
+5. It produces a transparent first-pass result collection.
 
-The first implementation uses Python's standard library and does not require API keys or a paid model service. The included demo agents are deterministic placeholders—not claims of autonomous intelligence. Model adapters will be added behind the same agent interface.
+The deterministic demo agents remain placeholders, not claims of autonomous intelligence. The first real local-model adapter is available through the existing agent interface. It uses an explicitly configured Ollama-compatible chat endpoint and Python's standard library. See [Local Model Adapter](docs/LOCAL-MODEL-ADAPTER.md).
 
 ## Quick start
 
 Requires Python 3.11 or newer. From the repository root:
 
-```bash
-python -m pip install -e .
-python -m unittest discover -s tests -v
-python -m tushka.demo
-```
+    python -m pip install -e .
+    python -m unittest discover -s tests -v
+    python -m tushka.demo
 
 ## Repository map
 
-- `src/tushka/` — coordinator, agent interface, and runnable demo
-- `tests/` — automated tests for the core behavior
-- `docs/ARCHITECTURE.md` — system boundaries and design principles
-- `docs/ROADMAP.md` — staged implementation plan
-- `CONTRIBUTING.md` — how to participate
-- `SECURITY.md` — responsible security reporting
+- src/tushka/ — coordinator, agent interface, local adapter, and runnable demo
+- tests/ — automated tests for core behavior and local HTTP adapter behavior
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — system boundaries and design principles
+- [docs/LOCAL-MODEL-ADAPTER.md](docs/LOCAL-MODEL-ADAPTER.md) — local inference configuration and limits
+- [docs/ROADMAP.md](docs/ROADMAP.md) — staged implementation plan
+- [CONTRIBUTING.md](CONTRIBUTING.md) — how to participate
+- [SECURITY.md](SECURITY.md) — responsible security reporting
 
 ## Design principles
 
@@ -56,7 +55,7 @@ python -m tushka.demo
 
 ## Project status
 
-**Stage 1 alpha (`v0.1.0-alpha`) — experimental.** The coordinator and demo establish the first executable seam. Distributed networking, persistent memory, real model adapters, and production security are not implemented yet. See [Stage 1 release notes](docs/RELEASE-0.1.0-alpha.md).
+**Stage 1 alpha (v0.1.0-alpha) — experimental.** The coordinator, deterministic demo, and first local-model adapter establish an executable agent integration seam. Distributed networking, persistent memory, independent verification, and production security are not implemented. See [Stage 1 release notes](docs/RELEASE-0.1.0-alpha.md).
 
 ## License
 
@@ -64,10 +63,12 @@ Licensed under the [Apache License 2.0](LICENSE).
 
 ## Mission, goals, and roadmap
 
-Read our [North Star and strategic goals](docs/GOALS-AND-NORTH-STAR.md) to understand the long-term destination, [living roadmap](docs/ROADMAP.md) for staged milestones, and [contribution review process](docs/CONTRIBUTION-REVIEW-PROCESS.md) for how ideas become reviewed improvements.
+Read the [North Star and strategic goals](docs/GOALS-AND-NORTH-STAR.md), the [living roadmap](docs/ROADMAP.md), and the [contribution review process](docs/CONTRIBUTION-REVIEW-PROCESS.md).
 
-## Community and roadmap
+## Knowledge ownership
 
-Tushka welcomes people at every experience level. Questions, tests, documentation, translations, design, research, code, and node operation all help move the collective forward. See the [community mission and living roadmap](docs/ROADMAP.md) and [Contributing](CONTRIBUTING.md) to find a starting point.
+Tushka's target design distinguishes private local memory, the opt-in shared community commons, and verified knowledge views. These are future architecture goals, not features of the current alpha. See [Knowledge Architecture](docs/KNOWLEDGE-ARCHITECTURE.md).
 
-The public ecosystem front door and upstream contribution workflow are maintained separately at [TushkaLoLz31337](https://github.com/TushkaLoLz31337/TushkaLoLz31337).
+## Community
+
+Tushka welcomes people at every experience level. See [Contributing](CONTRIBUTING.md) to find a starting point. The public ecosystem front door and upstream contribution workflow are maintained separately at [TushkaLoLz31337](https://github.com/TushkaLoLz31337/TushkaLoLz31337).
