@@ -6,8 +6,12 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "protocol_version": { "const": "1.0" },
-    "message_type": { "const": "result" },
+    "protocol_version": {
+      "const": "1.0"
+    },
+    "message_type": {
+      "const": "result"
+    },
     "task_id": {
       "type": "string",
       "minLength": 1,
@@ -21,7 +25,11 @@
     },
     "status": {
       "type": "string",
-      "enum": ["succeeded", "failed", "cancelled"]
+      "enum": [
+        "succeeded",
+        "failed",
+        "cancelled"
+      ]
     },
     "content": {
       "type": "string",
@@ -41,17 +49,55 @@
           "minLength": 1,
           "maxLength": 1024
         },
-        "retryable": { "type": "boolean" }
+        "retryable": {
+          "type": "boolean"
+        }
       },
-      "required": ["code", "message"]
+      "required": [
+        "code",
+        "message"
+      ]
     }
   },
-  "required": ["protocol_version", "message_type", "task_id", "agent_id", "status"],
+  "required": [
+    "protocol_version",
+    "message_type",
+    "task_id",
+    "agent_id",
+    "status"
+  ],
   "allOf": [
     {
-      "if": { "properties": { "status": { "const": "succeeded" } }, "required": ["status"] },
-      "then": { "required": ["content"], "not": { "required": ["error"] } },
-      "else": { "required": ["error"] }
+      "if": {
+        "properties": {
+          "status": {
+            "const": "succeeded"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "content"
+        ],
+        "not": {
+          "required": [
+            "error"
+          ]
+        }
+      },
+      "else": {
+        "required": [
+          "error"
+        ],
+        "not": {
+          "required": [
+            "content"
+          ]
+        }
+      }
     }
   ]
 }
