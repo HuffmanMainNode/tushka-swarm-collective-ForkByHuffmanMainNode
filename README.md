@@ -1,8 +1,6 @@
 # Tushka Swarm Collective
 
-**An open, model-independent collective of cooperating AI agents and community-operated nodes.**
-
-Tushka is an effort to build practical, inspectable, and extensible swarm intelligence without locking the system to one model vendor, account, machine, or coordinator.
+**An open, model-independent collective of cooperating AI agents and community-operated nodes.** Tushka is an effort to build practical, inspectable, and extensible swarm intelligence without locking the system to one model vendor, account, machine, or coordinator.
 
 ## What we're building
 
@@ -41,6 +39,7 @@ python -m tushka.demo
 - `tests/` — automated tests for the core behavior
 - `docs/ARCHITECTURE.md` — system boundaries and design principles
 - `docs/ROADMAP.md` — staged implementation plan
+- `docs/WORKING-CHECKPOINT.md` — shared status, handoffs, and resume instructions
 - `CONTRIBUTING.md` — how to participate
 - `SECURITY.md` — responsible security reporting
 
@@ -68,6 +67,6 @@ Read our [North Star and strategic goals](docs/GOALS-AND-NORTH-STAR.md) to under
 
 ## Community and roadmap
 
-Tushka welcomes people at every experience level. Questions, tests, documentation, translations, design, research, code, and node operation all help move the collective forward. See the [community mission and living roadmap](docs/ROADMAP.md) and [Contributing](CONTRIBUTING.md) to find a starting point.
+Tushka welcomes people at every experience level. Questions, tests, documentation, translations, design, research, code, and node operation all help move the collective forward. See the [community mission and living roadmap](docs/ROADMAP.md), the [shared working checkpoint](docs/WORKING-CHECKPOINT.md) for current work and pause/resume handoffs, and [Contributing](CONTRIBUTING.md) to find a starting point.
 
 The public ecosystem front door and upstream contribution workflow are maintained separately at [TushkaLoLz31337](https://github.com/TushkaLoLz31337/TushkaLoLz31337).
