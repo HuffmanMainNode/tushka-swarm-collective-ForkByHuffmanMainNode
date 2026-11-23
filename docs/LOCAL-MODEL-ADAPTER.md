@@ -34,10 +34,23 @@ or require an account or hosted API.
     if __name__ == "__main__":
         asyncio.run(main())
 
-The default endpoint is http://127.0.0.1:11434. Set base_url explicitly
-when using another endpoint. Non-loopback endpoints must use HTTPS. Operators
-must understand and trust the configured destination because task prompts
-are sent to that endpoint.
+## Endpoint URL
+
+The default endpoint is http://127.0.0.1:11434. The base_url argument accepts
+either the service root or a URL path prefix. The adapter appends /api/chat to
+the configured URL after removing trailing slashes:
+
+- http://127.0.0.1:11434 becomes
+  http://127.0.0.1:11434/api/chat.
+- http://127.0.0.1:11434/ollama/v1/ becomes
+  http://127.0.0.1:11434/ollama/v1/api/chat.
+
+The configured path prefix is preserved. The adapter does not detect or
+rewrite an existing /api/chat suffix, so configure the service root or
+prefix rather than the final chat endpoint URL.
+
+Non-loopback endpoints must use HTTPS. Operators must understand and trust
+the configured destination because task prompts are sent to that endpoint.
 
 ## Behavior and limits
 
