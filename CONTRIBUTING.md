@@ -23,7 +23,7 @@ Small contributions count. Explain what you observed and how someone else can re
 - Add local-model setup instructions and reproducible evaluation cases.
 - Improve provenance, export, privacy, or security documentation.
 
-For substantial proposals and external project discoveries, use the [contribution intake and review process](docs/CONTRIBUTION-REVIEW-PROCESS.md). You can open a structured [contribution proposal](https://github.com/TushkaLoLz31337/tushka-swarm-collective/issues/new?template=contribution_proposal.yml) to give reviewers the source, evidence, permissions, risks, and suggested next step.
+For substantial proposals and external project discoveries, use the [contribution intake and review process](docs/CONTRIBUTION-REVIEW-PROCESS.md). You can open a structured [contribution proposal](https://github.com/TushkaLoLz31337/tushka-swarm-collective/issues/new?template=contribution_proposal.yml).
 
 ## Contribution workflow
 
@@ -48,9 +48,9 @@ For substantial proposals and external project discoveries, use the [contributio
 
 - Python 3.11+
 - Runtime dependencies: Python standard library only
-- Run tests: `python -m unittest discover -s tests -v`
-- Run demo: `python -m tushka.demo`
+- Run tests: python -m unittest discover -s tests -v
+- Run demo: python -m tushka.demo
 
 ## License
 
-The project is licensed under the [Apache License 2.0](../LICENSE). By submitting a contribution, you agree that it may be distributed under the repository's applicable contribution and licensing terms. If you are unsure whether you have permission to contribute material, ask before submitting it.
+The project is licensed under the [Apache License 2.0](LICENSE). By submitting a contribution, you agree that it may be distributed under the repository's applicable contribution and licensing terms. If you are unsure whether you have permission to contribute material, ask before submitting it.
