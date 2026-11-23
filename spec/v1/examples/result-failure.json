@@ -1,0 +1,12 @@
+{
+  "protocol_version": "1.0",
+  "message_type": "result",
+  "task_id": "example-task-001",
+  "agent_id": "local/researcher-01",
+  "status": "failed",
+  "error": {
+    "code": "SOURCE_UNAVAILABLE",
+    "message": "The configured source could not be retrieved.",
+    "retryable": true
+  }
+}
