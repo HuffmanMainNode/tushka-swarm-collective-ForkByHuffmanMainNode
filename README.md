@@ -62,6 +62,10 @@ python -m tushka.demo
 
 Licensed under the [Apache License 2.0](LICENSE).
 
+## Mission, goals, and roadmap
+
+Read our [North Star and strategic goals](docs/GOALS-AND-NORTH-STAR.md) to understand the long-term destination, [living roadmap](docs/ROADMAP.md) for staged milestones, and [contribution review process](docs/CONTRIBUTION-REVIEW-PROCESS.md) for how ideas become reviewed improvements.
+
 ## Community and roadmap
 
 Tushka welcomes people at every experience level. Questions, tests, documentation, translations, design, research, code, and node operation all help move the collective forward. See the [community mission and living roadmap](docs/ROADMAP.md) and [Contributing](CONTRIBUTING.md) to find a starting point.
