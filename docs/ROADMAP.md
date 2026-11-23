@@ -59,14 +59,16 @@ This loop is ongoing. “Indefinite drive for knowledge” means a permanent pra
 
 ### Stage 2 — Knowledge with provenance
 
-- [ ] Versioned knowledge records with source, author, license, timestamp, and confidence/context
-- [ ] Retrieval interface independent of storage backend
-- [ ] Provenance carried through agent outputs
-- [ ] Human correction, dispute, and review workflow
-- [ ] Export, import, backup, and deletion mechanisms
-- [ ] Protection against prompt injection, poisoned sources, and unsupported claims
+- [ ] Define versioned knowledge records with source, author, license, timestamps, and review status
+- [ ] Separate private local memory from explicitly shared community records
+- [ ] Implement local-only storage with private/shared namespaces and access controls
+- [ ] Add explicit review-before-publish, export/import, backup, and deletion workflows
+- [ ] Build retrieval that carries provenance and review status into agent results
+- [ ] Add correction, dispute, supersession, and withdrawal workflows
+- [ ] Threat-model prompt injection, poisoned sources, access control, and synchronization
+- [ ] Prototype authenticated opt-in synchronization between two test nodes only after local boundaries are verified
 
-**Gate:** users can trace where a knowledge claim came from, challenge or correct it, and export their own contributions.
+**Gate:** a private record stays private; a user can explicitly publish one approved record with its license and provenance; a second test node imports only that record and can inspect its history and status. See [Knowledge Architecture](KNOWLEDGE-ARCHITECTURE.md).
 
 ### Stage 3 — Interoperable and federated nodes
 
