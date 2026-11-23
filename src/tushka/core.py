@@ -7,6 +7,7 @@ Adapters implement the Agent protocol and can call local or hosted systems.
 from __future__ import annotations
 
 import asyncio
+import math
 from dataclasses import dataclass
 from typing import Protocol, Sequence
 
@@ -17,6 +18,12 @@ class Task:
 
     task_id: str
     prompt: str
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.task_id, str) or not self.task_id.strip():
+            raise ValueError("task_id must be a non-empty string.")
+        if not isinstance(self.prompt, str) or not self.prompt.strip():
+            raise ValueError("prompt must be a non-empty string.")
 
 
 @dataclass(frozen=True, slots=True)
@@ -45,18 +52,35 @@ class Coordinator:
     def __init__(self, agents: Sequence[Agent], timeout_seconds: float = 60.0):
         if not agents:
             raise ValueError("Coordinator requires at least one agent.")
-        if timeout_seconds <= 0:
-            raise ValueError("timeout_seconds must be greater than zero.")
+        if not math.isfinite(timeout_seconds) or timeout_seconds <= 0:
+            raise ValueError("timeout_seconds must be a finite positive number.")
+
+        names = [agent.name for agent in agents]
+        if any(not isinstance(name, str) or not name.strip() for name in names):
+            raise ValueError("Every agent must have a non-empty name.")
+        if len(set(names)) != len(names):
+            raise ValueError("Agent names must be unique within a coordinator.")
+
         self.agents = tuple(agents)
         self.timeout_seconds = timeout_seconds
 
     async def run(self, task: Task) -> list[AgentResult]:
         """Run all agents concurrently, isolating individual failures."""
+        if not isinstance(task, Task):
+            raise TypeError("task must be a Task instance.")
+
         async def invoke(agent: Agent) -> AgentResult:
             try:
                 result = await asyncio.wait_for(
                     agent.run(task), timeout=self.timeout_seconds
                 )
+                if not isinstance(result, AgentResult):
+                    return AgentResult(
+                        agent_name=agent.name,
+                        content="",
+                        success=False,
+                        error="Agent returned an invalid result type.",
+                    )
                 if result.agent_name != agent.name:
                     return AgentResult(
                         agent_name=agent.name,
@@ -72,12 +96,12 @@ class Coordinator:
                     success=False,
                     error=f"Timed out after {self.timeout_seconds:g} seconds.",
                 )
-            except Exception as exc:  # isolate a failed participant
+            except Exception as exc:  # isolate a failed participant without leaking details
                 return AgentResult(
                     agent_name=agent.name,
                     content="",
                     success=False,
-                    error=f"{type(exc).__name__}: {exc}",
+                    error=f"{type(exc).__name__}: agent execution failed; details withheld.",
                 )
 
         return list(await asyncio.gather(*(invoke(agent) for agent in self.agents)))
