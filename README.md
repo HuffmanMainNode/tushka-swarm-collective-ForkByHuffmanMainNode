@@ -56,7 +56,11 @@ python -m tushka.demo
 
 ## Project status
 
-**Early prototype / active architecture.** The coordinator and demo establish the first executable seam. Distributed networking, persistent memory, real model adapters, and production security are not implemented yet.
+**Stage 1 alpha (`v0.1.0-alpha`) — experimental.** The coordinator and demo establish the first executable seam. Distributed networking, persistent memory, real model adapters, and production security are not implemented yet. See [Stage 1 release notes](docs/RELEASE-0.1.0-alpha.md).
+
+## License
+
+Licensed under the [Apache License 2.0](LICENSE).
 
 ## Participate
 
