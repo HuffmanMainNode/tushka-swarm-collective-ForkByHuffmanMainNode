@@ -73,6 +73,11 @@ Create governance and operational practices that do not depend on one founder or
 
 **Evidence of progress:** public decision records, least-privilege roles, documented release procedures, maintainer succession, backups, multiple independent reviewers, and clear conflict-resolution paths.
 
+
+## Knowledge ownership and sharing boundary
+
+Tushka's target design separates three domains: private local memory, the opt-in shared community commons, and verified knowledge views that expose review status and evidence. These are architectural goals, not features implemented in the current alpha. Local material is private by default; publication requires an explicit user action and a visible review of the exact records and license/permission basis being shared. No node receives access to another node's private memory merely by joining the network. See [Knowledge Architecture](KNOWLEDGE-ARCHITECTURE.md).
+
 ## Product capabilities we ultimately want
 
 These are long-term capability areas, not claims about the current alpha:
