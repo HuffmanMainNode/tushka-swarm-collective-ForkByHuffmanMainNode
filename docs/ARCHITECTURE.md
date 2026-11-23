@@ -2,31 +2,29 @@
 
 ## Current implementation boundary
 
-The first milestone is a local asynchronous coordinator. It dispatches one task to multiple independent agents, collects attributable results, isolates individual failures, applies a timeout, and produces a transparent first-pass synthesis.
+The current alpha has a local asynchronous coordinator. It dispatches one task to multiple independent agents, collects attributable results, isolates individual failures, applies a timeout, and produces a transparent first-pass result collection.
 
-The demo agents are deterministic stand-ins. They prove the orchestration interface, not model intelligence.
+The deterministic demo agents are stand-ins. The first local model adapter implements the same Agent interface through an explicitly configured Ollama-compatible chat endpoint. It does not make the coordinator provider-specific.
 
 ## Target architecture
 
-```text
-                 User / Application
-                         |
-                  Task Coordinator
-                         |
-              Task routing and policy
-                  /      |      \
-             Agent A  Agent B  Agent C
-                |        |        |
-             Adapter  Adapter  Adapter
-                |        |        |
-           Local model / open model / optional hosted model
+    User / Application
+            |
+      Task Coordinator
+            |
+      Task routing and policy
+        /      |      \
+    Agent A  Agent B  Agent C
+       |        |        |
+    Adapter  Adapter  Adapter
+       |        |        |
+    Local model / open model / optional hosted model
 
-       Shared services (introduced incrementally):
-       - provenance-aware knowledge and retrieval
-       - evaluation and verification
-       - permissions, identity, and audit events
-       - federated node discovery and transport
-```
+    Shared services (introduced incrementally):
+    - provenance-aware knowledge and retrieval
+    - evaluation and verification
+    - permissions, identity, and audit events
+    - federated node discovery and transport
 
 ## Core boundaries
 
