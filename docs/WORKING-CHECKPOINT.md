@@ -16,8 +16,8 @@ Participation is voluntary and asynchronous. Nobody is expected to be continuous
 
 | Workstream | Current record | Focus | Handoff condition |
 |---|---|---|---|
-| Protocol contracts | [PR #5](https://github.com/TushkaLoLz31337/tushka-swarm-collective/pull/5) | Versioned task/result envelopes, validation, compatibility, negative tests | Contract examples and tests are clear; CI passes; integration notes are posted |
-| Local model + coordinator | [PR #4](https://github.com/TushkaLoLz31337/tushka-swarm-collective/pull/4) | Local model adapter, coordinator reliability, limits and timeout tests | Adapter behavior and limits are tested; endpoint expectations documented; CI passes |
+| Protocol contracts | [PR #5](https://github.com/TushkaLoLz31337/tushka-swarm-collective/pull/5) | Versioned task/result envelopes, validation, compatibility, negative tests | Add actual schema-validation coverage and prompt bounds; approve fork Actions run; passing CI |
+| Local model + coordinator | [PR #4](https://github.com/TushkaLoLz31337/tushka-swarm-collective/pull/4) | Local model adapter, coordinator reliability, limits and timeout tests | Requested regression tests and URL-prefix documentation are now in the PR diff; rebase latest main, approve fork Actions run, pass CI, then mark ready |
 | Communication broker | [Issue #6 — TSK-COMMS-001](https://github.com/TushkaLoLz31337/tushka-swarm-collective/issues/6) | Bounded queue, routing, admission, acknowledgements, lifecycle, retries, cancellation, fairness, idempotency | Local in-process broker design and acceptance tests agreed; build in small reviewable PRs |
 | Project integration | [Roadmap](ROADMAP.md) · [Architecture](ARCHITECTURE.md) | Keep work aligned, review evidence, update checkpoint and roadmap | Every merged change updates relevant docs/tests and leaves a clear next step |
 
@@ -73,8 +73,10 @@ For broker tasks, the runtime lifecycle will be more detailed: created → accep
 
 ## 7. Immediate checkpoint actions
 
-- [ ] PR #4: add tests for prompt/response size limits and request timeout; clarify base URL path behavior; obtain passing CI.
-- [ ] PR #5: add negative contract tests (unknown fields, unsupported version, invalid status, conditional result rules); clarify prompt-size enforcement; obtain passing CI.
+**Live integration status (checked 2026-11-23):** PR #4 head is `74565325c16daa5e129745aca77392e72a5f050d`; its requested size-limit, timeout, and base-URL-prefix tests are now present in the diff. It remains draft and GitHub reports it not mergeable against the current main. PR #5 head is `9a47d4b6e1531e984fe6b021b0880f18ae2b68c2`; GitHub reports it mergeable, but its tests still inspect fixture shape rather than actually validating schema rejection behavior. Both fork-triggered Actions runs are `action_required` and currently have zero check-runs; no passing CI result is available. The repository integration cannot approve those fork workflow runs through the available GitHub connection.
+
+- [ ] PR #4: rebase/update against latest main while preserving the checkpoint README link; mark ready after integration conflict is resolved; approve fork Actions run and obtain passing CI.
+- [ ] PR #5: add Draft 2020-12 positive/negative schema validation (or explicit dependency-free contract tests) and prompt-size bounds; approve fork Actions run and obtain passing CI.
 - [ ] Shared: agree the broker's first local-only API and lifecycle tests in Issue #6.
 - [ ] Shared: ensure the broker consumes the protocol contract and dispatches to the local agent adapter without coupling transport to model provider.
 - [ ] Integration: after review and passing checks, merge in dependency order and update the roadmap/checkpoint with exact commit links.
