@@ -1,0 +1,53 @@
+name: Contribution or research proposal
+description: Submit an idea, repository, prototype, tool, or improvement for review.
+title: "[Proposal]: "
+labels: ["needs-triage"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Contribution type
+      options:
+        - Bug or reliability improvement
+        - Feature or architecture proposal
+        - Existing repository or project to evaluate
+        - Prototype or experiment
+        - Research or knowledge resource
+        - Documentation, design, or accessibility
+        - Security or privacy concern
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: What did you find or build?
+      description: Explain it in plain language. New contributors are welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source and provenance
+      description: Link the source repository, URL, author, path, and commit where possible. State the license or permissions if known.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or reproduction steps
+      description: Tests, observations, benchmark results, screenshots, citations, or steps someone else can repeat.
+  - type: textarea
+    id: value
+    attributes:
+      label: Why could this help Tushka?
+      description: Which roadmap stage or capability does it support?
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and unknowns
+      description: Consider security, privacy, licensing, dependencies, compute, bias, and maintenance.
+  - type: textarea
+    id: next
+    attributes:
+      label: Suggested smallest next step
+      description: For example, reproduce, compare, prototype, document, or open a focused pull request.
