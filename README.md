@@ -1,0 +1,64 @@
+# Tushka Swarm Collective
+
+**An open, model-independent collective of cooperating AI agents and community-operated nodes.**
+
+Tushka is an effort to build practical, inspectable, and extensible swarm intelligence without locking the system to one model vendor, account, machine, or coordinator.
+
+## What we're building
+
+- **Agent collaboration:** independent agents receive a task, work in parallel, and return attributable results.
+- **Model independence:** adapters can connect local models, open models, and optional hosted providers.
+- **Local-first operation:** core orchestration should run on an ordinary developer machine.
+- **Shared knowledge with provenance:** contributions remain attributable, sourced, versioned, and reviewable.
+- **Federated participation:** people can operate nodes and contribute capabilities without surrendering ownership of their own projects.
+- **Verifiable behavior:** tests, evaluations, logs, and explicit failure states are part of the system.
+
+## First working milestone
+
+The initial prototype is intentionally small:
+
+1. A coordinator accepts a task.
+2. It dispatches the task to two independent agents.
+3. It collects both results.
+4. It verifies that usable results were returned.
+5. It produces a combined, traceable response.
+
+The first implementation uses Python's standard library and does not require API keys or a paid model service. The included demo agents are deterministic placeholders—not claims of autonomous intelligence. Model adapters will be added behind the same agent interface.
+
+## Quick start
+
+Requires Python 3.11 or newer.
+
+```bash
+python -m unittest discover -s tests -v
+python -m tushka.demo
+```
+
+## Repository map
+
+- `src/tushka/` — coordinator, agent interface, and runnable demo
+- `tests/` — automated tests for the core behavior
+- `docs/ARCHITECTURE.md` — system boundaries and design principles
+- `docs/ROADMAP.md` — staged implementation plan
+- `CONTRIBUTING.md` — how to participate
+- `SECURITY.md` — responsible security reporting
+
+## Design principles
+
+1. No single model, provider, account, machine, or maintainer is indispensable.
+2. No silent rewriting of contributed knowledge or project history.
+3. Preserve authorship, licenses, source links, and upstream relationships.
+4. Prefer small interoperable modules over a monolith.
+5. Treat model output as untrusted until evaluated.
+6. Make failures, uncertainty, and provenance visible.
+7. Keep the core runnable without a proprietary API dependency.
+
+## Project status
+
+**Early prototype / active architecture.** The coordinator and demo establish the first executable seam. Distributed networking, persistent memory, real model adapters, and production security are not implemented yet.
+
+## Participate
+
+Start with an issue, propose a focused change, or bring an independent agent, model adapter, evaluation, dataset with appropriate rights, or node implementation. See [Contributing](CONTRIBUTING.md).
+
+The public ecosystem front door and upstream contribution workflow are maintained separately at [TushkaLoLz31337](https://github.com/TushkaLoLz31337/TushkaLoLz31337).
