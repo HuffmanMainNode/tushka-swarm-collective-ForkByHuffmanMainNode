@@ -27,9 +27,10 @@ The first implementation uses Python's standard library and does not require API
 
 ## Quick start
 
-Requires Python 3.11 or newer.
+Requires Python 3.11 or newer. From the repository root:
 
 ```bash
+python -m pip install -e .
 python -m unittest discover -s tests -v
 python -m tushka.demo
 ```
