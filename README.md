@@ -12,6 +12,8 @@ Tushka is an effort to build practical, inspectable, and extensible swarm intell
 - **Shared knowledge with provenance:** contributions remain attributable, sourced, versioned, and reviewable.
 - **Federated participation:** people can operate nodes and contribute capabilities without surrendering ownership of their own projects.
 - **Verifiable behavior:** tests, evaluations, logs, and explicit failure states are part of the system.
+- **Purposeful continuity:** records have stable identities, explicit purposes, directional lifecycle paths, bounded retention, and correction/deletion workflows.
+- **Compliance by design:** each use case must pass privacy, security, platform-terms, licensing, and jurisdiction-specific review before release or activation.
 
 ## First working milestone
 
@@ -41,6 +43,9 @@ Requires Python 3.11 or newer. From the repository root:
 - [docs/LOCAL-MODEL-ADAPTER.md](docs/LOCAL-MODEL-ADAPTER.md) — local inference configuration and limits
 - [docs/ROADMAP.md](docs/ROADMAP.md) — staged implementation plan
 - [docs/WORKING-CHECKPOINT.md](docs/WORKING-CHECKPOINT.md) — shared status, handoffs, and resume instructions
+- [docs/RECORD-GOVERNANCE.md](docs/RECORD-GOVERNANCE.md) — immutable provenance, identifiers, tags, directional paths, retention, and storage-bloat controls (proposed)
+- [docs/COMPLIANCE-AND-USE-POLICY.md](docs/COMPLIANCE-AND-USE-POLICY.md) — project-wide legal, privacy, security, platform, and license guardrails (proposed)
+- [docs/USE-CASE-REGISTER.md](docs/USE-CASE-REGISTER.md) — mandatory per-use-case assessment template and initial register
 - [CONTRIBUTING.md](CONTRIBUTING.md) — how to participate
 - [SECURITY.md](SECURITY.md) — responsible security reporting
 
@@ -53,10 +58,13 @@ Requires Python 3.11 or newer. From the repository root:
 5. Treat model output as untrusted until evaluated.
 6. Make failures, uncertainty, and provenance visible.
 7. Keep the core runnable without a proprietary API dependency.
+8. Collect only what is necessary, for a declared purpose, and retain it only as long as justified.
+9. Private data is private by default; sharing and external side effects require scoped authorization.
+10. Every use case must be assessed before it is enabled; no prototype, local node, or agent is exempt.
 
 ## Project status
 
-**Stage 1 alpha (v0.1.0-alpha) — experimental.** The coordinator, deterministic demo, and first local-model adapter establish an executable agent integration seam. Distributed networking, persistent memory, independent verification, and production security are not implemented. See [Stage 1 release notes](docs/RELEASE-0.1.0-alpha.md).
+**Stage 1 alpha (v0.1.0-alpha) — experimental.** The coordinator, deterministic demo, and first local-model adapter establish an executable agent integration seam. Distributed networking, persistent memory, immutable record storage, federation, and production security are not implemented. Governance documents linked above are proposed contracts pending review and implementation. See [Stage 1 release notes](docs/RELEASE-0.1.0-alpha.md).
 
 ## License
 
