@@ -121,3 +121,16 @@ The reviewer checks legal/terms applicability, privacy, security, provenance, ac
 ## 10. Governance and limitations
 
 This is an engineering policy, not a legal opinion, privacy notice, data-processing agreement, or guarantee of compliance. Legal obligations depend on the operator, organizational status, data subjects, data types, location, and actual deployment. Obtain Colorado and relevant federal counsel before processing sensitive personal data or deploying systems in regulated or consequential domains. Review this policy at least quarterly and whenever law, GitHub terms, or system behavior changes.
+
+
+## 11. Primary references checked for this draft
+
+These links are starting points, not a complete legal inventory. Re-check the current text and rules before each release or deployment.
+
+- [GitHub Terms of Service](https://docs.github.com/en/site-policy/github-terms/github-terms-of-service) — includes account, content, acceptable-use, API, and product terms.
+- [GitHub Acceptable Use Policies](https://docs.github.com/en/site-policy/acceptable-use-policies/github-acceptable-use-policies) — lawfulness, safety, IP, authenticity, spam, information use, privacy, and service limits.
+- [Colorado Attorney General — Colorado Privacy Act](https://coag.gov/resources/colorado-privacy-act/) — consumer rights, transparency, minimization, safeguards, assessments, sensitive-data consent, and universal opt-out mechanism.
+- [Colorado Attorney General — Consumer Data Protection Laws FAQ](https://coag.gov/resources/data-protection-laws/) — Colorado PII disposal, reasonable security, processor safeguards, and breach response. The AG's current guidance describes resident notice within 30 days after determination and AG notice within 30 days where 500 or more Colorado residents are affected, subject to statutory conditions and exceptions.
+- [Colorado General Assembly — SB26-189, Automated Decision-Making Technology](https://leg.colorado.gov/bills/sb26-189) — signed May 14, 2026. The enacted summary describes covered consequential domains, developer documentation beginning January 1, 2027, a three-year compliance-record retention requirement, consumer notice, correction rights, and meaningful human review/reconsideration after adverse outcomes.
+
+**Colorado ADMT caution:** SB26-189 applies to covered automated decision-making technology used in consequential decisions concerning education, employment, housing, financial/lending services, insurance, health care, and essential government services/public benefits. Tushka must not assume every model or task is covered—or exempt—without analyzing the actual deployment. Obtain legal review of the enacted text, implementing rules, and effective-date provisions before enabling such a use.
